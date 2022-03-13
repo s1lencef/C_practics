@@ -1,0 +1,3 @@
+/cygdrive/e/LETI/courses/c++2/first_hw/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/cygdrive/e/LETI/courses/c++2/first_hw/cmake-build-debug/CMakeFiles/edit_cache.dir
+/cygdrive/e/LETI/courses/c++2/first_hw/cmake-build-debug/CMakeFiles/first_hw.dir

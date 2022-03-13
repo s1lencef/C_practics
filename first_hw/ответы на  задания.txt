@@ -1,0 +1,43 @@
+1) void по идее не может быть записана в объявлении переменной, 
+так же мы в значение по указателю void присваиваем тип int, что тоже неправильно
+
+
+2)в декларации функции указана ссылка, а сама функция возвращает значение, 
+то же самое при инициализации переменной, она должна быть ссылкой, а не объектом типа Person
+
+3) то, что я придумал, в отдельном файле
+
+
+4)нет гарантий, что левый элемент не изменится. Поскольку правый элемент передается по константной ссылке, то гарантии того, что он не изменится - 100%
+
+Scanning dependencies of target first_hw
+[ 50%] Building CXX object CMakeFiles/first_hw.dir/main.cpp.o
+/cygdrive/e/LETI/courses/c++2/first_hw/main.cpp: In function 'int main()':
+/cygdrive/e/LETI/courses/c++2/first_hw/main.cpp:69:10: error: no match for 'operator+' (operand types are 'const Complex' and 'const Complex')
+   69 |     d = g+e;
+      |         ~^~
+      |         | |
+      |         | const Complex
+      |         const Complex
+/cygdrive/e/LETI/courses/c++2/first_hw/main.cpp:6:13: note: candidate: 'Complex Complex::operator+(const Complex&)' (near match)
+    6 |     Complex operator + (const Complex& other){
+      |             ^~~~~~~~
+/cygdrive/e/LETI/courses/c++2/first_hw/main.cpp:6:13: note:   passing 'const Complex*' as 'this' argument discards qualifiers
+In file included from /usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/bits/stl_algobase.h:67,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/bits/char_traits.h:39,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/ios:40,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/ostream:38,
+                 from /usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/iostream:39,
+                 from /cygdrive/e/LETI/courses/c++2/first_hw/main.cpp:1:
+/usr/lib/gcc/x86_64-pc-cygwin/11/include/c++/bits/stl_iterator.h:568:5: note: candidate: 'template<class _Iterator> constexpr std::reverse_iterator<_IteratorL> std::operator+(typename std::reverse_iterator<_IteratorL>::difference_type, const std::reverse_iterator<_IteratorL>&)'
+
+левый элемент передается как константный а это не предусмотренно написанной перегрузкой, так как он по идее должен менятся
+
+5)
+template<class T>
+void strange_assign( T a, const T& b) {
+	if(a != b)
+		a = b;
+} 
+Значение переменной а должно меняться в ходе выполнения функции, создаваемой шаблоном, а значение b лучше гарантировать неизменным,
+ Т должны сравниваться и уметь принимать значения того же типа. Вторую часть задания я не особо понял
